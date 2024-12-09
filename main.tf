@@ -14,7 +14,7 @@ resource "google_firestore_database" "database" {
   name                    = "(default)"
   location_id             = "europe-central2"
   type                    = "FIRESTORE_NATIVE"
-  delete_protection_state = "DELETE_PROTECTION_ENABLED"
+  delete_protection_state = "DELETE_PROTECTION_DISABLED"
   deletion_policy         = "DELETE"
 }
 

@@ -1,5 +1,5 @@
 variable "project_id" {
-  default = "Tasky-2024"
+  default = "tasky-2024"
 }
 
 variable "region" {

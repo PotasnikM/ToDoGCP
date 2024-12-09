@@ -18,7 +18,7 @@ const mailjet = Mailjet.apiConnect(
 );
 
 
-functions.http('emailNotifications', async (req, res) => {
+functions.http('Notify', async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
 
     if (req.method === 'OPTIONS') {

@@ -10,7 +10,7 @@ initializeApp({
 
 const db = getFirestore();
 
-functions.http('AddNewTask', async (req, res) => {
+functions.http('NewTask', async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
 
     if (req.method === 'OPTIONS') {

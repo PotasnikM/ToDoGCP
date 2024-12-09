@@ -10,7 +10,7 @@ initializeApp({
 
 const db = getFirestore();
 
-functions.http('deleteOneTask', async (req, res) => {
+functions.http('DeleteTask', async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
 
     if (req.method === 'OPTIONS') {

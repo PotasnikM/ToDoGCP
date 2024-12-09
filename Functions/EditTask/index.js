@@ -10,7 +10,7 @@ initializeApp({
 
 const db = getFirestore();
 
-functions.http('editOneTask', async (req, res) => {
+functions.http('EditTask', async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
 
     if (req.method === 'OPTIONS') {

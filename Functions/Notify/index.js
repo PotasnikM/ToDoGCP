@@ -11,7 +11,7 @@ initializeApp({
 const db = getFirestore();
 
 
-sgMail.setApiKey('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');
+// sgMail.setApiKey(API_KEY);
 
 functions.http('Notify', async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');

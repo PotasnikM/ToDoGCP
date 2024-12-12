@@ -174,6 +174,9 @@ resource "google_cloudfunctions2_function" "Notify" {
   depends_on = [google_firestore_database.database]
 }
 
+output "function_uri" {
+  value = google_cloudfunctions2_function.Notify.service_config[0].uri
+}
 
 resource "google_cloud_scheduler_job" "SendNotification" {
   name         = "SendNotification"
@@ -182,7 +185,10 @@ resource "google_cloud_scheduler_job" "SendNotification" {
   region = "europe-west1"
   http_target {
     http_method = "POST"
-    uri = "https://us-central1-tasky-2024.cloudfunctions.net/Notify"
+    uri = google_cloudfunctions2_function.Notify.service_config[0].uri
+    oidc_token {
+      service_account_email = "terraform@tasky-2024.iam.gserviceaccount.com"
+    }
   }
   depends_on = [google_cloudfunctions2_function.Notify]
 }

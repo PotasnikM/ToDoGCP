@@ -174,9 +174,6 @@ resource "google_cloudfunctions2_function" "Notify" {
   depends_on = [google_firestore_database.database]
 }
 
-output "function_uri" {
-  value = google_cloudfunctions2_function.Notify.service_config[0].uri
-}
 
 resource "google_cloud_scheduler_job" "SendNotification" {
   name         = "SendNotification"
@@ -185,7 +182,7 @@ resource "google_cloud_scheduler_job" "SendNotification" {
   region = "europe-west1"
   http_target {
     http_method = "POST"
-    uri = google_cloudfunctions2_function.Notify.service_config[0].uri
+    uri = "https://us-central1-tasky-2024.cloudfunctions.net/Notify"
   }
   depends_on = [google_cloudfunctions2_function.Notify]
 }

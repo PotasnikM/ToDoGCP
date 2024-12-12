@@ -21,15 +21,18 @@ functions.http('EditTask', async (req, res) => {
     } else {
         try {
             const taskId = req.body.data.id;
+            console.log('ID of task to edit:', taskId);
             const { title, content, created_at, due_to, group, is_done } = req.body.data;
 
             if (!taskId || !title || !content || !created_at || !due_to || group === undefined || is_done === undefined) {
+                console.error('Task ID is required.');
                 return res.status(400).json({ error: 'Task ID is required.' });
             }
 
             const taskDoc = await db.collection('tasks').doc(taskId).get();
 
             if (!taskDoc.data()) {
+                console.error('Task not found.');
                 return res.status(404).json({ error: 'Task not found.' });
             }
 
@@ -45,7 +48,7 @@ functions.http('EditTask', async (req, res) => {
                 group,
                 is_done
             });
-
+            console.log('Task edited:', taskId);
             res.status(200).json({ message: 'Task edited successfully.' });
         } catch (error) {
             console.error('Error editing task:', error);

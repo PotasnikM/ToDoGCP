@@ -23,7 +23,7 @@ functions.http('NewTask', async (req, res) => {
             const { title, content, created_at, due_to, group, is_done } = req.body.data;
 
             if (!title || !content || !created_at || !due_to || group === undefined || is_done === undefined) {
-                console.error(req.body);
+                console.error('All fields are required!', req.body);
                 return res.status(400).json({ error: 'All fields are required!', title: title, content, created_at, due_to, group, is_done });
             }
 
@@ -38,7 +38,7 @@ functions.http('NewTask', async (req, res) => {
                 group,
                 is_done
             });
-
+            console.log('Task added:', taskRef.id);
             res.status(201).json({ taskId: taskRef.id });
         } catch (error) {
             console.error('Error adding task:', error);

@@ -23,6 +23,7 @@ functions.http('GetAllTasks', async (req, res) => {
         try {
             const snapshot = await db.collection('tasks').get();
             const tasks = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            console.log('List of all tasks send.');
             res.send({
                 "status": 200,
                 "data": tasks

@@ -21,19 +21,21 @@ functions.http('DeleteTask', async (req, res) => {
     } else {
         try {
             const taskId = req.body.data.id;
-            console.log(taskId);
+            console.log('ID of task to delete:', taskId);
             if (!taskId) {
+                console.error('Task ID is required.');
                 return res.status(400).json({ error: 'Task ID is required.' });
             }
 
             const taskDoc = await db.collection('tasks').doc(taskId).get();
 
             if (!taskDoc.data()) {
+                console.error('Task not found.');
                 return res.status(404).json({ error: 'Task not found.' });
             }
 
             await db.collection('tasks').doc(taskId).delete();
-
+            console.log('Task deleted:', taskId);
             res.status(200).json({ message: 'Task deleted successfully.' });
         } catch (error) {
             console.error('Error deleting task:', error);

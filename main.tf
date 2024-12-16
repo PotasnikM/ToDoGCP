@@ -202,10 +202,4 @@ resource "google_logging_metric" "email_sent_successfully_count" {
     value_type  = "INT64"
     unit        = "1"
   }
-
-  bucket_options {
-    explicit_buckets {
-      bounds = [1.0, 5.0, 10.0, 20.0, 50.0]
-    }
-  }
 }

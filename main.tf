@@ -195,7 +195,7 @@ resource "google_cloud_scheduler_job" "SendNotification" {
 resource "google_logging_metric" "email_sent_successfully_count" {
   name        = "email_sent_successfully_count"
   description = "Count of logs containing 'Email sent successfully'"
-  filter      = "textPayload: \"Email sent successfully\""
+  filter      = "textPayload=\"Email sent successfully\\n\""
 
   metric_descriptor {
     metric_kind = "DELTA"

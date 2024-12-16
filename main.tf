@@ -192,3 +192,20 @@ resource "google_cloud_scheduler_job" "SendNotification" {
   }
   depends_on = [google_cloudfunctions2_function.Notify]
 }
+resource "google_logging_metric" "email_sent_successfully_count" {
+  name        = "email_sent_successfully_count"
+  description = "Count of logs containing 'Email sent successfully'"
+  filter      = "textPayload:\"Email sent successfully\""
+
+  metric_descriptor {
+    metric_kind = "DELTA"
+    value_type  = "INT64"
+    unit        = "1"
+  }
+
+  bucket_options {
+    explicit_buckets {
+      bounds = [1.0, 5.0, 10.0, 20.0, 50.0]
+    }
+  }
+}

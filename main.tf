@@ -203,3 +203,6 @@ resource "google_logging_metric" "email_sent_successfully_count" {
     unit        = "1"
   }
 }
+output "metric_filter" {
+  value = google_logging_metric.email_sent_successfully_count.filter
+}
